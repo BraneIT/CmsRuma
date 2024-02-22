@@ -316,3 +316,15 @@ class AdminController extends Controller
                 return response()->json(['filename'=>$fileName, 'uploaded'=>1, 'url'=>$url]);
             }
     }
+
+        // INSERT IMAGES TO CKEDITOR ON ANOTHER ROUTE
+       // if($request->hasFile('upload')){
+        //     $originName = $request->file('upload')->getClientOriginalName();
+        //     $fileName = pathinfo($originName, PATHINFO_FILENAME);
+        //     $extension = $request->file('upload')->getClientOriginalName();
+        //     $fileName = $fileName . '_' . time() . '.' . $extension;
+        //     $request->file('upload')->move(public_path('media'), $fileName);
+
+        //     $url = asset('/media' . $fileName);
+        //     return response()->json(['filename'=>$fileName, 'uploaded'=>1, 'url'=>$url]);
+        // }
