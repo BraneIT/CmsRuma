@@ -13,7 +13,6 @@ class News extends Model
 
     protected $table = 'news';
 
-    // Define the fillable columns
     protected $fillable = [
         'title',
         'category',

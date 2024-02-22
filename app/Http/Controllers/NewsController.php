@@ -34,7 +34,6 @@ function get_news(Request $request) {
     function show_news($id)
     {
         $newsItem = News::findOrFail($id);
-         // Increment the visitors count
         $newsItem->increment('visitors');
 
         return view('frontend_views.news_show', ['newsItem' => $newsItem]);
@@ -50,23 +49,18 @@ function get_news(Request $request) {
         ->where('news.category_id', '=', $categoryId)
         ->paginate(7);
 
-        // Find the category by its id
         $category = Categories::find($categoryId);
          $newsCountByCategory = News::select('categories.id as category_id','categories.category as category_name', DB::raw('COUNT(*) as news_count'))
                                ->join('categories', 'news.category_id', '=', 'categories.id')
                                ->groupBy('categories.id', 'categories.category')
                                ->get();
 
-        // If category doesn't exist, you may want to return an error or redirect
         if (!$category) {
-            // return error or redirect, this is up to you.
+           
             return redirect()->back()->withErrors('Category not found.');
         }
-
-        // If the category exists, get all the related news
         $news = $category->news;
-
-        // Return the news to the view
+       
         return view('frontend_views.kategorija', ['news' => $news, 'count' => $newsCountByCategory, 'newsItems' => $newsItems]);
     }
 }

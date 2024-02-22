@@ -120,7 +120,7 @@ class AdminController extends Controller
             }
         $news->save();
 
-        // Redirect or return a response as needed
+        
         return redirect('/dashboard/news')->with('success', 'News updated successfully.');
     }
 
@@ -130,7 +130,7 @@ class AdminController extends Controller
         $news = News::findOrFail($id);
         $news->delete();
 
-        // Redirect or return a response as needed
+        
         return redirect()->back()->with('success', 'News deleted successfully.');
     }
 
@@ -209,7 +209,6 @@ class AdminController extends Controller
         $categories = Categories::findOrFail($id);
         $categories->delete();
 
-        // Redirect or return a response as needed
         return redirect()->back()->with('success', 'News deleted successfully.');
     }
 
@@ -290,7 +289,6 @@ class AdminController extends Controller
         $event = Events::findOrFail($id);
         $event->delete();
 
-        // Redirect or return a response as needed
         return redirect()->back()->with('success', 'Event deleted successfully.');
     }
     public function search_event(Request $request)
@@ -318,15 +316,3 @@ class AdminController extends Controller
                 return response()->json(['filename'=>$fileName, 'uploaded'=>1, 'url'=>$url]);
             }
     }
-
-        // INSERT IMAGES TO CKEDITOR ON ANOTHER ROUTE
-       // if($request->hasFile('upload')){
-        //     $originName = $request->file('upload')->getClientOriginalName();
-        //     $fileName = pathinfo($originName, PATHINFO_FILENAME);
-        //     $extension = $request->file('upload')->getClientOriginalName();
-        //     $fileName = $fileName . '_' . time() . '.' . $extension;
-        //     $request->file('upload')->move(public_path('media'), $fileName);
-
-        //     $url = asset('/media' . $fileName);
-        //     return response()->json(['filename'=>$fileName, 'uploaded'=>1, 'url'=>$url]);
-        // }
